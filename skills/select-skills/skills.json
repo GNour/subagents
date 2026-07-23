@@ -1,0 +1,1356 @@
+{
+  "gsd": {
+    "kind": "framework",
+    "note": "spec-driven plan \u2192 execute \u2192 verify workflow that drives the whole team",
+    "used_by": [
+      "tech-lead",
+      "product-owner",
+      "company-orchestrator"
+    ],
+    "departments": [
+      "engineering",
+      "product",
+      "meta"
+    ]
+  },
+  "find-subagents": {
+    "kind": "local",
+    "note": "discover which specialist fits each piece of work",
+    "used_by": [
+      "tech-lead",
+      "company-orchestrator",
+      "dynamic-agent"
+    ],
+    "departments": [
+      "engineering",
+      "meta"
+    ]
+  },
+  "getsentry/sentry-code-review": {
+    "kind": "registry",
+    "note": "surface regressions and risky diffs before release",
+    "used_by": [
+      "tech-lead"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "anthropics/mcp-builder": {
+    "kind": "registry",
+    "note": "reason about tooling/integration surfaces when designing systems",
+    "used_by": [
+      "tech-lead",
+      "api-architect",
+      "ml-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "data-ai"
+    ]
+  },
+  "apollographql/graphql-schema": {
+    "kind": "registry",
+    "note": "design robust, evolvable GraphQL schemas",
+    "used_by": [
+      "api-architect",
+      "nestjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "apollographql/apollo-server": {
+    "kind": "registry",
+    "note": "reference server-side GraphQL patterns",
+    "used_by": [
+      "api-architect",
+      "nestjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "stripe/stripe-best-practices": {
+    "kind": "registry",
+    "note": "correct, secure payment + webhook design",
+    "used_by": [
+      "api-architect"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "openai/security-threat-model": {
+    "kind": "registry",
+    "note": "threat-model the API surface before it ships",
+    "used_by": [
+      "api-architect",
+      "security-auditor"
+    ],
+    "departments": [
+      "engineering",
+      "quality"
+    ]
+  },
+  "trailofbits/modern-python": {
+    "kind": "registry",
+    "note": "idiomatic, secure, modern Python patterns",
+    "used_by": [
+      "python-dev",
+      "data-engineer",
+      "ml-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "data-ai"
+    ]
+  },
+  "microsoft/fastapi-router-py": {
+    "kind": "registry",
+    "note": "well-structured FastAPI routers and DI",
+    "used_by": [
+      "python-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "microsoft/pydantic-models-py": {
+    "kind": "registry",
+    "note": "correct Pydantic v2 models and validation",
+    "used_by": [
+      "python-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "testmu-ai/pytest-skill": {
+    "kind": "registry",
+    "note": "robust pytest suites and fixtures",
+    "used_by": [
+      "python-dev",
+      "unit-test-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "quality"
+    ]
+  },
+  "getsentry/sentry-python-sdk": {
+    "kind": "registry",
+    "note": "production error monitoring for Python",
+    "used_by": [
+      "python-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "testmu-ai/phpunit-skill": {
+    "kind": "registry",
+    "note": "unit/feature tests for Laravel domains",
+    "used_by": [
+      "laravel-dev",
+      "unit-test-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "quality"
+    ]
+  },
+  "testmu-ai/laravel-dusk-skill": {
+    "kind": "registry",
+    "note": "browser/E2E testing of Laravel apps",
+    "used_by": [
+      "laravel-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "getsentry/sentry-php-sdk": {
+    "kind": "registry",
+    "note": "production error monitoring for PHP/Laravel",
+    "used_by": [
+      "laravel-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "jira-ticket-planner": {
+    "kind": "bundled",
+    "note": "turn work into well-formed tickets (PHP/Laravel template)",
+    "used_by": [
+      "laravel-dev",
+      "product-owner",
+      "scrum-master"
+    ],
+    "departments": [
+      "engineering",
+      "product"
+    ]
+  },
+  "vercel-labs/next-best-practices": {
+    "kind": "registry",
+    "note": "official Next.js best practices",
+    "used_by": [
+      "nextjs-dev",
+      "fullstack-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "vercel-labs/next-cache-components": {
+    "kind": "registry",
+    "note": "correct caching/revalidation model",
+    "used_by": [
+      "nextjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "tailwind": {
+    "kind": "local",
+    "note": "utility-first Tailwind CSS conventions and patterns",
+    "used_by": [
+      "nextjs-dev",
+      "reactjs-dev",
+      "fullstack-dev",
+      "design-system-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "design"
+    ]
+  },
+  "google-labs-code/shadcn-ui": {
+    "kind": "registry",
+    "note": "compose accessible shadcn/ui components",
+    "used_by": [
+      "nextjs-dev",
+      "reactjs-dev",
+      "fullstack-dev",
+      "design-system-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "design"
+    ]
+  },
+  "auth0/auth0-nextjs": {
+    "kind": "registry",
+    "note": "correct auth integration in Next.js",
+    "used_by": [
+      "nextjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "getsentry/sentry-nextjs-sdk": {
+    "kind": "registry",
+    "note": "production error + performance monitoring",
+    "used_by": [
+      "nextjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "anthropics/frontend-design": {
+    "kind": "registry",
+    "note": "polished, consistent UI implementation",
+    "used_by": [
+      "nextjs-dev",
+      "reactjs-dev",
+      "fullstack-dev",
+      "accessibility-tester",
+      "design-system-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "quality",
+      "design"
+    ]
+  },
+  "addyosmani/core-web-vitals": {
+    "kind": "registry",
+    "note": "measure and fix Core Web Vitals",
+    "used_by": [
+      "nextjs-dev",
+      "performance-engineer",
+      "seo-specialist"
+    ],
+    "departments": [
+      "engineering",
+      "quality",
+      "product"
+    ]
+  },
+  "google-labs-code/react-components": {
+    "kind": "registry",
+    "note": "solid React component patterns",
+    "used_by": [
+      "reactjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "microsoft/zustand-store-ts": {
+    "kind": "registry",
+    "note": "clean client-state stores with Zustand",
+    "used_by": [
+      "reactjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "auth0/auth0-react": {
+    "kind": "registry",
+    "note": "auth flows in single-page apps",
+    "used_by": [
+      "reactjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "getsentry/sentry-react-sdk": {
+    "kind": "registry",
+    "note": "production error monitoring for React",
+    "used_by": [
+      "reactjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "getsentry/sentry-nestjs-sdk": {
+    "kind": "registry",
+    "note": "production-grade error monitoring",
+    "used_by": [
+      "nestjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "better-auth/best-practices": {
+    "kind": "registry",
+    "note": "modern auth/session best practices",
+    "used_by": [
+      "nestjs-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "testmu-ai/jest-skill": {
+    "kind": "registry",
+    "note": "unit + e2e tests with Jest",
+    "used_by": [
+      "nestjs-dev",
+      "unit-test-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "quality"
+    ]
+  },
+  "callstackincubator/react-native-best-practices": {
+    "kind": "registry",
+    "note": "idiomatic, performant RN code",
+    "used_by": [
+      "react-native-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "expo/building-native-ui": {
+    "kind": "registry",
+    "note": "native-quality UI in Expo",
+    "used_by": [
+      "react-native-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "expo/expo-tailwind-setup": {
+    "kind": "registry",
+    "note": "Tailwind (NativeWind) styling in Expo",
+    "used_by": [
+      "react-native-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "expo/native-data-fetching": {
+    "kind": "registry",
+    "note": "correct data fetching on mobile",
+    "used_by": [
+      "react-native-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "expo/expo-deployment": {
+    "kind": "registry",
+    "note": "EAS builds and store submission",
+    "used_by": [
+      "react-native-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "getsentry/sentry-react-native-sdk": {
+    "kind": "registry",
+    "note": "crash + error monitoring on mobile",
+    "used_by": [
+      "react-native-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "auth0/auth0-react-native": {
+    "kind": "registry",
+    "note": "secure mobile auth",
+    "used_by": [
+      "react-native-dev"
+    ],
+    "departments": [
+      "engineering"
+    ]
+  },
+  "testmu-ai/vitest-skill": {
+    "kind": "registry",
+    "note": "fast unit tests for TS code",
+    "used_by": [
+      "fullstack-dev",
+      "unit-test-engineer"
+    ],
+    "departments": [
+      "engineering",
+      "quality"
+    ]
+  },
+  "anthropics/webapp-testing": {
+    "kind": "registry",
+    "note": "structured web app testing workflow",
+    "used_by": [
+      "qa-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "testmu-ai/cucumber-skill": {
+    "kind": "registry",
+    "note": "BDD/Gherkin acceptance scenarios",
+    "used_by": [
+      "qa-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "phuryn/test-scenarios": {
+    "kind": "registry",
+    "note": "derive thorough test scenarios from requirements",
+    "used_by": [
+      "qa-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "testmu-ai/playwright-skill": {
+    "kind": "registry",
+    "note": "robust Playwright suites",
+    "used_by": [
+      "e2e-test-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "openai/playwright": {
+    "kind": "registry",
+    "note": "additional Playwright authoring patterns",
+    "used_by": [
+      "e2e-test-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "testmu-ai/cypress-skill": {
+    "kind": "registry",
+    "note": "Cypress E2E where preferred",
+    "used_by": [
+      "e2e-test-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "testmu-ai/detox-skill": {
+    "kind": "registry",
+    "note": "React Native E2E",
+    "used_by": [
+      "e2e-test-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "trailofbits/property-based-testing": {
+    "kind": "registry",
+    "note": "property-based tests for tricky logic",
+    "used_by": [
+      "unit-test-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "coderabbitai/code-review": {
+    "kind": "registry",
+    "note": "structured, high-signal code review",
+    "used_by": [
+      "code-reviewer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "getsentry/sentry-pr-code-review": {
+    "kind": "registry",
+    "note": "catch regressions and error-prone patterns",
+    "used_by": [
+      "code-reviewer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "garrytan/design-review": {
+    "kind": "registry",
+    "note": "review UI/UX changes",
+    "used_by": [
+      "code-reviewer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "addyosmani/accessibility": {
+    "kind": "registry",
+    "note": "focused accessibility auditing",
+    "used_by": [
+      "accessibility-tester"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "addyosmani/web-quality-audit": {
+    "kind": "registry",
+    "note": "systematic quality + a11y auditing",
+    "used_by": [
+      "accessibility-tester"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "addyosmani/performance": {
+    "kind": "registry",
+    "note": "systematic frontend performance work",
+    "used_by": [
+      "performance-engineer"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "cloudflare/web-perf": {
+    "kind": "registry",
+    "note": "edge/caching and delivery performance",
+    "used_by": [
+      "performance-engineer",
+      "cloud-architect"
+    ],
+    "departments": [
+      "quality",
+      "infrastructure"
+    ]
+  },
+  "datadog-labs/dd-apm": {
+    "kind": "registry",
+    "note": "backend latency/APM profiling",
+    "used_by": [
+      "performance-engineer",
+      "sre-incident-responder"
+    ],
+    "departments": [
+      "quality",
+      "infrastructure"
+    ]
+  },
+  "openai/security-best-practices": {
+    "kind": "registry",
+    "note": "baseline secure-by-default checks",
+    "used_by": [
+      "security-auditor"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "trailofbits/static-analysis": {
+    "kind": "registry",
+    "note": "find vulnerability classes at scale",
+    "used_by": [
+      "security-auditor"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "trailofbits/semgrep-rule-creator": {
+    "kind": "registry",
+    "note": "write custom Semgrep rules for findings",
+    "used_by": [
+      "security-auditor"
+    ],
+    "departments": [
+      "quality"
+    ]
+  },
+  "getsentry/sentry-fix-issues": {
+    "kind": "registry",
+    "note": "triage and fix reported issues",
+    "used_by": [
+      "security-auditor",
+      "sre-incident-responder"
+    ],
+    "departments": [
+      "quality",
+      "infrastructure"
+    ]
+  },
+  "supabase/postgres-best-practices": {
+    "kind": "registry",
+    "note": "sound Postgres schema + query design",
+    "used_by": [
+      "data-engineer",
+      "data-analyst",
+      "database-administrator"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "duckdb/query": {
+    "kind": "registry",
+    "note": "fast local analytical queries",
+    "used_by": [
+      "data-engineer"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "clickhouse/clickhouse-best-practices": {
+    "kind": "registry",
+    "note": "columnar/analytics store design",
+    "used_by": [
+      "data-engineer"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "tinybirdco/tinybird-best-practices": {
+    "kind": "registry",
+    "note": "real-time analytics pipelines",
+    "used_by": [
+      "data-engineer"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "phuryn/cohort-analysis": {
+    "kind": "registry",
+    "note": "cohort/retention analysis",
+    "used_by": [
+      "data-analyst"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "phuryn/ab-test-analysis": {
+    "kind": "registry",
+    "note": "sound A/B test interpretation",
+    "used_by": [
+      "data-analyst"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "dataviz": {
+    "kind": "bundled",
+    "note": "design clear, accessible charts and dashboards",
+    "used_by": [
+      "data-analyst"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "google-gemini/gemini-api-dev": {
+    "kind": "registry",
+    "note": "LLM API integration patterns",
+    "used_by": [
+      "ml-engineer"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "hamelsmu/write-judge-prompt": {
+    "kind": "registry",
+    "note": "build LLM-as-judge evaluations",
+    "used_by": [
+      "ml-engineer"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "hamelsmu/error-analysis": {
+    "kind": "registry",
+    "note": "systematically analyze model failures",
+    "used_by": [
+      "ml-engineer"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "huggingface/hugging-face-model-trainer": {
+    "kind": "registry",
+    "note": "train/fine-tune open models",
+    "used_by": [
+      "ml-engineer"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "neondatabase/neon-postgres": {
+    "kind": "registry",
+    "note": "serverless/branching Postgres workflows",
+    "used_by": [
+      "database-administrator"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "mongodb/mongodb-schema-design": {
+    "kind": "registry",
+    "note": "document schema design where NoSQL fits",
+    "used_by": [
+      "database-administrator"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "mongodb/mongodb-query-optimizer": {
+    "kind": "registry",
+    "note": "optimize MongoDB queries and indexes",
+    "used_by": [
+      "database-administrator"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "redis/redis-development": {
+    "kind": "registry",
+    "note": "caching and Redis data-structure patterns",
+    "used_by": [
+      "database-administrator"
+    ],
+    "departments": [
+      "data-ai"
+    ]
+  },
+  "hashicorp/terraform-style-guide": {
+    "kind": "registry",
+    "note": "clean, maintainable Terraform",
+    "used_by": [
+      "devops-engineer"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "cloudflare/wrangler": {
+    "kind": "registry",
+    "note": "deploy and manage Cloudflare Workers",
+    "used_by": [
+      "devops-engineer"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "openai/vercel-deploy": {
+    "kind": "registry",
+    "note": "Vercel deployment workflows",
+    "used_by": [
+      "devops-engineer"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "netlify/netlify-cli-and-deploy": {
+    "kind": "registry",
+    "note": "Netlify build/deploy workflows",
+    "used_by": [
+      "devops-engineer"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "expo/expo-cicd-workflows": {
+    "kind": "registry",
+    "note": "mobile CI/CD reference",
+    "used_by": [
+      "devops-engineer"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "getsentry/sentry-create-alert": {
+    "kind": "registry",
+    "note": "wire release health alerting",
+    "used_by": [
+      "devops-engineer",
+      "sre-incident-responder"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "microsoft/cloud-solution-architect": {
+    "kind": "registry",
+    "note": "structured cloud architecture design",
+    "used_by": [
+      "cloud-architect"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "zxkane/aws-skills": {
+    "kind": "registry",
+    "note": "AWS service selection and patterns",
+    "used_by": [
+      "cloud-architect"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "cloudflare/workers-best-practices": {
+    "kind": "registry",
+    "note": "edge-first architecture patterns",
+    "used_by": [
+      "cloud-architect"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "datadog-labs/dd-monitors": {
+    "kind": "registry",
+    "note": "define actionable monitors/SLOs",
+    "used_by": [
+      "sre-incident-responder"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "redhat/sre-skillpack": {
+    "kind": "registry",
+    "note": "SRE practices and runbooks",
+    "used_by": [
+      "sre-incident-responder"
+    ],
+    "departments": [
+      "infrastructure"
+    ]
+  },
+  "figma/figma-implement-design": {
+    "kind": "registry",
+    "note": "translate Figma designs to implementation",
+    "used_by": [
+      "ui-designer"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "figma/figma-generate-design": {
+    "kind": "registry",
+    "note": "generate design explorations",
+    "used_by": [
+      "ui-designer"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "anthropics/canvas-design": {
+    "kind": "registry",
+    "note": "compose polished visual layouts",
+    "used_by": [
+      "ui-designer"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "garrytan/design-consultation": {
+    "kind": "registry",
+    "note": "structured design critique",
+    "used_by": [
+      "ui-designer"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "phuryn/user-personas": {
+    "kind": "registry",
+    "note": "build grounded user personas",
+    "used_by": [
+      "ux-researcher"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "phuryn/interview-script": {
+    "kind": "registry",
+    "note": "write unbiased interview/usability scripts",
+    "used_by": [
+      "ux-researcher"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "phuryn/customer-journey-map": {
+    "kind": "registry",
+    "note": "map end-to-end user journeys",
+    "used_by": [
+      "ux-researcher"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "deanpeters/jobs-to-be-done": {
+    "kind": "registry",
+    "note": "frame needs as jobs-to-be-done",
+    "used_by": [
+      "ux-researcher"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "deanpeters/discovery-interview-prep": {
+    "kind": "registry",
+    "note": "prepare rigorous discovery interviews",
+    "used_by": [
+      "ux-researcher"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "figma/figma-create-design-system-rules": {
+    "kind": "registry",
+    "note": "codify design-system rules",
+    "used_by": [
+      "design-system-engineer"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "figma/figma-code-connect-components": {
+    "kind": "registry",
+    "note": "connect Figma components to code",
+    "used_by": [
+      "design-system-engineer"
+    ],
+    "departments": [
+      "design"
+    ]
+  },
+  "phuryn/create-prd": {
+    "kind": "registry",
+    "note": "write clear, complete PRDs",
+    "used_by": [
+      "product-owner"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/user-stories": {
+    "kind": "registry",
+    "note": "slice work into valuable user stories",
+    "used_by": [
+      "product-owner"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/prioritization-frameworks": {
+    "kind": "registry",
+    "note": "prioritize with RICE/MoSCoW/etc.",
+    "used_by": [
+      "product-owner"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "deanpeters/opportunity-solution-tree": {
+    "kind": "registry",
+    "note": "connect outcomes to solutions",
+    "used_by": [
+      "product-owner"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "deanpeters/user-story-splitting": {
+    "kind": "registry",
+    "note": "split stories into shippable slices",
+    "used_by": [
+      "product-owner"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/sprint-plan": {
+    "kind": "registry",
+    "note": "plan sprints against real capacity",
+    "used_by": [
+      "scrum-master"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/retro": {
+    "kind": "registry",
+    "note": "run retros that yield concrete actions",
+    "used_by": [
+      "scrum-master"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/release-notes": {
+    "kind": "registry",
+    "note": "produce clear release notes",
+    "used_by": [
+      "scrum-master",
+      "technical-writer"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "anthropics/doc-coauthoring": {
+    "kind": "registry",
+    "note": "write planning and retro docs",
+    "used_by": [
+      "scrum-master",
+      "business-analyst",
+      "technical-writer",
+      "company-orchestrator",
+      "context-manager"
+    ],
+    "departments": [
+      "product",
+      "meta"
+    ]
+  },
+  "phuryn/swot-analysis": {
+    "kind": "registry",
+    "note": "structured SWOT analysis",
+    "used_by": [
+      "business-analyst"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/porters-five-forces": {
+    "kind": "registry",
+    "note": "industry/competitive forces analysis",
+    "used_by": [
+      "business-analyst"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "deanpeters/pestel-analysis": {
+    "kind": "registry",
+    "note": "macro-environment (PESTEL) analysis",
+    "used_by": [
+      "business-analyst"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "drawio": {
+    "kind": "bundled",
+    "note": "process, flow, and ER diagrams",
+    "used_by": [
+      "business-analyst"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "sanjay3290/deep-research": {
+    "kind": "registry",
+    "note": "structured multi-source deep research",
+    "used_by": [
+      "market-researcher"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/market-sizing": {
+    "kind": "registry",
+    "note": "TAM/SAM/SOM market sizing",
+    "used_by": [
+      "market-researcher"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/competitor-analysis": {
+    "kind": "registry",
+    "note": "rigorous competitor analysis",
+    "used_by": [
+      "market-researcher"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "phuryn/competitive-battlecard": {
+    "kind": "registry",
+    "note": "sales/positioning battlecards",
+    "used_by": [
+      "market-researcher"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "deanpeters/company-research": {
+    "kind": "registry",
+    "note": "profile companies and competitors",
+    "used_by": [
+      "market-researcher"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "brave/web-search": {
+    "kind": "registry",
+    "note": "primary web research and sourcing",
+    "used_by": [
+      "market-researcher",
+      "technical-writer"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "anthropics/docx": {
+    "kind": "registry",
+    "note": "produce polished document deliverables",
+    "used_by": [
+      "technical-writer"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "makenotion/research-documentation": {
+    "kind": "registry",
+    "note": "organize durable product/tech docs",
+    "used_by": [
+      "technical-writer"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "addyosmani/seo": {
+    "kind": "registry",
+    "note": "technical + on-page SEO best practices",
+    "used_by": [
+      "seo-specialist"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "coreyhaines31/seo-audit": {
+    "kind": "registry",
+    "note": "run a structured SEO audit",
+    "used_by": [
+      "seo-specialist"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "coreyhaines31/schema-markup": {
+    "kind": "registry",
+    "note": "implement correct structured data",
+    "used_by": [
+      "seo-specialist"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "coreyhaines31/site-architecture": {
+    "kind": "registry",
+    "note": "design crawlable, well-linked site structure",
+    "used_by": [
+      "seo-specialist"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "coreyhaines31/programmatic-seo": {
+    "kind": "registry",
+    "note": "scale content with programmatic SEO",
+    "used_by": [
+      "seo-specialist"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "sanity-io/seo-aeo-best-practices": {
+    "kind": "registry",
+    "note": "optimize for search + AI answer engines",
+    "used_by": [
+      "seo-specialist"
+    ],
+    "departments": [
+      "product"
+    ]
+  },
+  "select-skills": {
+    "kind": "local",
+    "note": "advise which skills each delegated task needs",
+    "used_by": [
+      "company-orchestrator",
+      "dynamic-agent"
+    ],
+    "departments": [
+      "meta"
+    ]
+  },
+  "muratcankoylan/multi-agent-patterns": {
+    "kind": "registry",
+    "note": "proven multi-agent coordination patterns",
+    "used_by": [
+      "company-orchestrator"
+    ],
+    "departments": [
+      "meta"
+    ]
+  },
+  "muratcankoylan/context-fundamentals": {
+    "kind": "registry",
+    "note": "sound context-engineering foundations",
+    "used_by": [
+      "context-manager"
+    ],
+    "departments": [
+      "meta"
+    ]
+  },
+  "muratcankoylan/context-compression": {
+    "kind": "registry",
+    "note": "compress context without losing signal",
+    "used_by": [
+      "context-manager"
+    ],
+    "departments": [
+      "meta"
+    ]
+  },
+  "makenotion/knowledge-capture": {
+    "kind": "registry",
+    "note": "capture decisions and knowledge durably",
+    "used_by": [
+      "context-manager"
+    ],
+    "departments": [
+      "meta"
+    ]
+  }
+}

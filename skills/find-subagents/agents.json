@@ -1,0 +1,719 @@
+[
+  {
+    "name": "tech-lead",
+    "department": "engineering",
+    "title": "Engineering Tech Lead & Delivery Orchestrator",
+    "description": "Use to break a feature or epic into engineering tasks, choose the right specialist (Python/Laravel/Next/Nest/React Native/React), set architecture direction, and coordinate delivery across the engineering department.",
+    "model": "opus",
+    "tools": "Read, Write, Edit, Glob, Grep, Skill",
+    "skills": [
+      "gsd",
+      "find-subagents",
+      "getsentry/sentry-code-review",
+      "anthropics/mcp-builder"
+    ],
+    "handoffs": [
+      "api-architect",
+      "python-dev",
+      "laravel-dev",
+      "nextjs-dev",
+      "nestjs-dev",
+      "reactjs-dev",
+      "react-native-dev",
+      "qa-engineer",
+      "code-reviewer"
+    ]
+  },
+  {
+    "name": "api-architect",
+    "department": "engineering",
+    "title": "API & Contracts Architect",
+    "description": "Use to design REST/GraphQL API contracts, versioning, pagination, error models, auth flows, and payment integrations that all backend specialists implement against.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "apollographql/graphql-schema",
+      "apollographql/apollo-server",
+      "stripe/stripe-best-practices",
+      "openai/security-threat-model",
+      "anthropics/mcp-builder"
+    ],
+    "handoffs": [
+      "nestjs-dev",
+      "laravel-dev",
+      "python-dev",
+      "qa-engineer"
+    ]
+  },
+  {
+    "name": "python-dev",
+    "department": "engineering",
+    "title": "Senior Python Engineer",
+    "description": "Use to build Python services and APIs (FastAPI/Django), data-processing scripts, and typed, well-tested Python 3.12+ code.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "trailofbits/modern-python",
+      "microsoft/fastapi-router-py",
+      "microsoft/pydantic-models-py",
+      "testmu-ai/pytest-skill",
+      "getsentry/sentry-python-sdk"
+    ],
+    "handoffs": [
+      "api-architect",
+      "unit-test-engineer",
+      "data-engineer",
+      "code-reviewer"
+    ]
+  },
+  {
+    "name": "laravel-dev",
+    "department": "engineering",
+    "title": "Senior Laravel / PHP Engineer",
+    "description": "Use to build Laravel 10+ applications and APIs: Eloquent models, queues, jobs, policies, resources, and PHP 8.2+ code with strong test coverage.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "testmu-ai/phpunit-skill",
+      "testmu-ai/laravel-dusk-skill",
+      "getsentry/sentry-php-sdk",
+      "jira-ticket-planner"
+    ],
+    "handoffs": [
+      "api-architect",
+      "unit-test-engineer",
+      "e2e-test-engineer",
+      "code-reviewer"
+    ]
+  },
+  {
+    "name": "nextjs-dev",
+    "department": "engineering",
+    "title": "Senior Next.js Engineer",
+    "description": "Use to build Next.js (App Router) applications: server/client components, server actions, routing, data fetching, auth, and performance-tuned frontends.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "vercel-labs/next-best-practices",
+      "vercel-labs/next-cache-components",
+      "tailwind",
+      "google-labs-code/shadcn-ui",
+      "auth0/auth0-nextjs",
+      "getsentry/sentry-nextjs-sdk",
+      "anthropics/frontend-design",
+      "addyosmani/core-web-vitals"
+    ],
+    "handoffs": [
+      "reactjs-dev",
+      "design-system-engineer",
+      "e2e-test-engineer",
+      "accessibility-tester"
+    ]
+  },
+  {
+    "name": "reactjs-dev",
+    "department": "engineering",
+    "title": "Senior React (SPA) Engineer",
+    "description": "Use to build client-side React applications (Vite/SPA): component architecture, state management, hooks, forms, and accessible UI.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "google-labs-code/react-components",
+      "tailwind",
+      "google-labs-code/shadcn-ui",
+      "microsoft/zustand-store-ts",
+      "auth0/auth0-react",
+      "getsentry/sentry-react-sdk",
+      "anthropics/frontend-design"
+    ],
+    "handoffs": [
+      "nextjs-dev",
+      "design-system-engineer",
+      "unit-test-engineer",
+      "accessibility-tester"
+    ]
+  },
+  {
+    "name": "nestjs-dev",
+    "department": "engineering",
+    "title": "Senior NestJS / Node Backend Engineer",
+    "description": "Use to build NestJS backend services: modules, providers, guards, interceptors, DTO validation, GraphQL/REST endpoints, and typed Node services.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "getsentry/sentry-nestjs-sdk",
+      "apollographql/apollo-server",
+      "apollographql/graphql-schema",
+      "better-auth/best-practices",
+      "testmu-ai/jest-skill"
+    ],
+    "handoffs": [
+      "api-architect",
+      "unit-test-engineer",
+      "database-administrator",
+      "code-reviewer"
+    ]
+  },
+  {
+    "name": "react-native-dev",
+    "department": "engineering",
+    "title": "Senior React Native / Expo Engineer",
+    "description": "Use to build cross-platform mobile apps with React Native + Expo: native UI, navigation, data fetching, deployment, and OTA updates.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "callstackincubator/react-native-best-practices",
+      "expo/building-native-ui",
+      "expo/expo-tailwind-setup",
+      "expo/native-data-fetching",
+      "expo/expo-deployment",
+      "getsentry/sentry-react-native-sdk",
+      "auth0/auth0-react-native"
+    ],
+    "handoffs": [
+      "reactjs-dev",
+      "design-system-engineer",
+      "e2e-test-engineer"
+    ]
+  },
+  {
+    "name": "fullstack-dev",
+    "department": "engineering",
+    "title": "Fullstack Feature Engineer",
+    "description": "Use for small, self-contained features that span frontend and backend and don't warrant splitting across specialists \u2014 prototypes, glue code, and end-to-end vertical slices.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "vercel-labs/next-best-practices",
+      "tailwind",
+      "google-labs-code/shadcn-ui",
+      "anthropics/frontend-design",
+      "testmu-ai/vitest-skill"
+    ],
+    "handoffs": [
+      "nextjs-dev",
+      "nestjs-dev",
+      "qa-engineer"
+    ]
+  },
+  {
+    "name": "qa-engineer",
+    "department": "quality",
+    "title": "QA Engineer & Test Strategist",
+    "description": "Use to define the overall test strategy, write test plans and acceptance criteria, do exploratory testing, and coordinate the specialist test agents.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "anthropics/webapp-testing",
+      "testmu-ai/cucumber-skill",
+      "phuryn/test-scenarios"
+    ],
+    "handoffs": [
+      "e2e-test-engineer",
+      "unit-test-engineer",
+      "accessibility-tester",
+      "product-owner"
+    ]
+  },
+  {
+    "name": "e2e-test-engineer",
+    "department": "quality",
+    "title": "End-to-End Test Automation Engineer",
+    "description": "Use to write and maintain end-to-end browser and mobile tests (Playwright, Cypress, Detox): user-flow coverage, auth reuse, stable locators, and CI wiring.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "testmu-ai/playwright-skill",
+      "openai/playwright",
+      "testmu-ai/cypress-skill",
+      "testmu-ai/detox-skill"
+    ],
+    "handoffs": [
+      "qa-engineer",
+      "nextjs-dev",
+      "react-native-dev"
+    ]
+  },
+  {
+    "name": "unit-test-engineer",
+    "department": "quality",
+    "title": "Unit & Integration Test Engineer",
+    "description": "Use to add fast, focused unit and integration tests across the stack (pytest, Jest, Vitest, PHPUnit) and to raise coverage on critical logic.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "testmu-ai/pytest-skill",
+      "testmu-ai/jest-skill",
+      "testmu-ai/vitest-skill",
+      "testmu-ai/phpunit-skill",
+      "trailofbits/property-based-testing"
+    ],
+    "handoffs": [
+      "python-dev",
+      "nestjs-dev",
+      "laravel-dev",
+      "reactjs-dev"
+    ]
+  },
+  {
+    "name": "code-reviewer",
+    "department": "quality",
+    "title": "Code Reviewer",
+    "description": "Use to review diffs and PRs for correctness, security, readability, and adherence to conventions before merge. Read-only \u2014 reports findings, does not edit.",
+    "model": "sonnet",
+    "tools": "Read, Grep, Glob, Skill",
+    "skills": [
+      "coderabbitai/code-review",
+      "getsentry/sentry-pr-code-review",
+      "garrytan/design-review"
+    ],
+    "handoffs": [
+      "tech-lead",
+      "security-auditor"
+    ]
+  },
+  {
+    "name": "accessibility-tester",
+    "department": "quality",
+    "title": "Accessibility (a11y) Tester",
+    "description": "Use to audit UIs against WCAG, check keyboard/screen-reader flows, color contrast, and semantics, and report prioritized accessibility fixes.",
+    "model": "sonnet",
+    "tools": "Read, Grep, Glob, Bash, Skill",
+    "skills": [
+      "addyosmani/accessibility",
+      "addyosmani/web-quality-audit",
+      "anthropics/frontend-design"
+    ],
+    "handoffs": [
+      "nextjs-dev",
+      "reactjs-dev",
+      "ui-designer"
+    ]
+  },
+  {
+    "name": "performance-engineer",
+    "department": "quality",
+    "title": "Performance Engineer",
+    "description": "Use to profile and optimize frontend and backend performance: Core Web Vitals, bundle size, query/latency hotspots, and load behavior.",
+    "model": "sonnet",
+    "tools": "Read, Grep, Glob, Bash, Skill",
+    "skills": [
+      "addyosmani/core-web-vitals",
+      "addyosmani/performance",
+      "cloudflare/web-perf",
+      "datadog-labs/dd-apm"
+    ],
+    "handoffs": [
+      "nextjs-dev",
+      "database-administrator",
+      "sre-incident-responder"
+    ]
+  },
+  {
+    "name": "security-auditor",
+    "department": "quality",
+    "title": "Security Auditor",
+    "description": "Use for defensive security review of code and configuration: authn/authz flaws, injection, secrets handling, dependency risk, and remediation guidance. Authorized/defensive use only.",
+    "model": "opus",
+    "tools": "Read, Grep, Glob, Bash, Skill",
+    "skills": [
+      "openai/security-threat-model",
+      "openai/security-best-practices",
+      "trailofbits/static-analysis",
+      "trailofbits/semgrep-rule-creator",
+      "getsentry/sentry-fix-issues"
+    ],
+    "handoffs": [
+      "code-reviewer",
+      "devops-engineer",
+      "tech-lead"
+    ]
+  },
+  {
+    "name": "data-engineer",
+    "department": "data-ai",
+    "title": "Data Engineer",
+    "description": "Use to build data pipelines, ETL/ELT, warehouse models, and reliable ingestion; schema design and data quality across Postgres and analytics stores.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "supabase/postgres-best-practices",
+      "duckdb/query",
+      "clickhouse/clickhouse-best-practices",
+      "tinybirdco/tinybird-best-practices",
+      "trailofbits/modern-python"
+    ],
+    "handoffs": [
+      "data-analyst",
+      "ml-engineer",
+      "database-administrator"
+    ]
+  },
+  {
+    "name": "data-analyst",
+    "department": "data-ai",
+    "title": "Data Analyst",
+    "description": "Use to answer product/business questions with data: SQL analysis, metrics definitions, cohort/funnel analysis, and clear visualized findings.",
+    "model": "sonnet",
+    "tools": "Read, Grep, Glob, WebFetch, WebSearch, Skill",
+    "skills": [
+      "supabase/postgres-best-practices",
+      "phuryn/cohort-analysis",
+      "phuryn/ab-test-analysis",
+      "dataviz"
+    ],
+    "handoffs": [
+      "data-engineer",
+      "product-owner",
+      "market-researcher"
+    ]
+  },
+  {
+    "name": "ml-engineer",
+    "department": "data-ai",
+    "title": "ML / AI Engineer",
+    "description": "Use to build ML and LLM-powered features: model integration, RAG, prompt/tooling design, evaluation, and productionizing inference.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "google-gemini/gemini-api-dev",
+      "anthropics/mcp-builder",
+      "hamelsmu/write-judge-prompt",
+      "hamelsmu/error-analysis",
+      "huggingface/hugging-face-model-trainer",
+      "trailofbits/modern-python"
+    ],
+    "handoffs": [
+      "data-engineer",
+      "api-architect",
+      "python-dev"
+    ]
+  },
+  {
+    "name": "database-administrator",
+    "department": "data-ai",
+    "title": "Database Administrator & Optimizer",
+    "description": "Use to design schemas, write and review migrations, tune indexes and slow queries, and plan for scale and reliability (primarily Postgres).",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "supabase/postgres-best-practices",
+      "neondatabase/neon-postgres",
+      "mongodb/mongodb-schema-design",
+      "mongodb/mongodb-query-optimizer",
+      "redis/redis-development"
+    ],
+    "handoffs": [
+      "data-engineer",
+      "nestjs-dev",
+      "laravel-dev",
+      "performance-engineer"
+    ]
+  },
+  {
+    "name": "devops-engineer",
+    "department": "infrastructure",
+    "title": "DevOps / CI-CD Engineer",
+    "description": "Use to build CI/CD pipelines, containerization, infrastructure-as-code, and deployment automation across environments.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "hashicorp/terraform-style-guide",
+      "cloudflare/wrangler",
+      "openai/vercel-deploy",
+      "netlify/netlify-cli-and-deploy",
+      "expo/expo-cicd-workflows",
+      "getsentry/sentry-create-alert"
+    ],
+    "handoffs": [
+      "cloud-architect",
+      "sre-incident-responder",
+      "security-auditor"
+    ]
+  },
+  {
+    "name": "cloud-architect",
+    "department": "infrastructure",
+    "title": "Cloud Architect",
+    "description": "Use to design cloud architecture: service topology, networking, scaling, cost, and reliability trade-offs across providers.",
+    "model": "opus",
+    "tools": "Read, Write, Edit, Glob, Grep, Skill",
+    "skills": [
+      "microsoft/cloud-solution-architect",
+      "zxkane/aws-skills",
+      "cloudflare/workers-best-practices",
+      "cloudflare/web-perf"
+    ],
+    "handoffs": [
+      "devops-engineer",
+      "sre-incident-responder",
+      "database-administrator"
+    ]
+  },
+  {
+    "name": "sre-incident-responder",
+    "department": "infrastructure",
+    "title": "SRE & Incident Responder",
+    "description": "Use to define SLOs, monitoring, and alerting, and to lead incident diagnosis and blameless postmortems.",
+    "model": "sonnet",
+    "tools": "Read, Grep, Glob, Bash, Skill",
+    "skills": [
+      "datadog-labs/dd-monitors",
+      "datadog-labs/dd-apm",
+      "redhat/sre-skillpack",
+      "getsentry/sentry-create-alert",
+      "getsentry/sentry-fix-issues"
+    ],
+    "handoffs": [
+      "devops-engineer",
+      "performance-engineer",
+      "cloud-architect"
+    ]
+  },
+  {
+    "name": "ui-designer",
+    "department": "design",
+    "title": "UI Designer",
+    "description": "Use to design interfaces and visual layouts, translate Figma into implementation-ready specs, and ensure visual consistency and polish.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Glob, Grep, WebFetch, Skill",
+    "skills": [
+      "figma/figma-implement-design",
+      "figma/figma-generate-design",
+      "anthropics/canvas-design",
+      "garrytan/design-consultation"
+    ],
+    "handoffs": [
+      "design-system-engineer",
+      "nextjs-dev",
+      "accessibility-tester",
+      "ux-researcher"
+    ]
+  },
+  {
+    "name": "ux-researcher",
+    "department": "design",
+    "title": "UX Researcher",
+    "description": "Use to plan and analyze user research: interview guides, usability findings, journey maps, and evidence-based product recommendations.",
+    "model": "sonnet",
+    "tools": "Read, Grep, Glob, WebFetch, WebSearch, Skill",
+    "skills": [
+      "phuryn/user-personas",
+      "phuryn/interview-script",
+      "phuryn/customer-journey-map",
+      "deanpeters/jobs-to-be-done",
+      "deanpeters/discovery-interview-prep"
+    ],
+    "handoffs": [
+      "ui-designer",
+      "product-owner",
+      "data-analyst"
+    ]
+  },
+  {
+    "name": "design-system-engineer",
+    "department": "design",
+    "title": "Design System Engineer",
+    "description": "Use to build and maintain the component library and design tokens that all frontend agents consume \u2014 accessible, documented, versioned.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, Skill",
+    "skills": [
+      "google-labs-code/shadcn-ui",
+      "tailwind",
+      "figma/figma-create-design-system-rules",
+      "figma/figma-code-connect-components",
+      "anthropics/frontend-design"
+    ],
+    "handoffs": [
+      "ui-designer",
+      "nextjs-dev",
+      "reactjs-dev",
+      "react-native-dev"
+    ]
+  },
+  {
+    "name": "product-owner",
+    "department": "product",
+    "title": "Product Owner / Manager",
+    "description": "Use to translate goals into a prioritized backlog: user stories, acceptance criteria, roadmap, and scope/trade-off decisions.",
+    "model": "opus",
+    "tools": "Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Skill",
+    "skills": [
+      "gsd",
+      "phuryn/create-prd",
+      "phuryn/user-stories",
+      "phuryn/prioritization-frameworks",
+      "deanpeters/opportunity-solution-tree",
+      "deanpeters/user-story-splitting",
+      "jira-ticket-planner"
+    ],
+    "handoffs": [
+      "tech-lead",
+      "scrum-master",
+      "ux-researcher",
+      "qa-engineer"
+    ]
+  },
+  {
+    "name": "scrum-master",
+    "department": "product",
+    "title": "Scrum Master / Delivery Manager",
+    "description": "Use to facilitate agile delivery: sprint planning, backlog grooming, ceremony structure, and removing delivery blockers.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Skill",
+    "skills": [
+      "phuryn/sprint-plan",
+      "phuryn/retro",
+      "phuryn/release-notes",
+      "jira-ticket-planner",
+      "anthropics/doc-coauthoring"
+    ],
+    "handoffs": [
+      "product-owner",
+      "tech-lead",
+      "business-analyst"
+    ]
+  },
+  {
+    "name": "business-analyst",
+    "department": "product",
+    "title": "Business Analyst",
+    "description": "Use to elicit and document requirements, model processes, and bridge business needs to technical specifications.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Skill",
+    "skills": [
+      "phuryn/swot-analysis",
+      "phuryn/porters-five-forces",
+      "deanpeters/pestel-analysis",
+      "anthropics/doc-coauthoring",
+      "drawio"
+    ],
+    "handoffs": [
+      "product-owner",
+      "tech-lead",
+      "api-architect"
+    ]
+  },
+  {
+    "name": "market-researcher",
+    "department": "product",
+    "title": "Market & Competitive Researcher",
+    "description": "Use for market sizing, competitive analysis, trend scanning, and evidence-based product/positioning recommendations.",
+    "model": "sonnet",
+    "tools": "Read, Grep, Glob, WebFetch, WebSearch, Skill",
+    "skills": [
+      "sanjay3290/deep-research",
+      "phuryn/market-sizing",
+      "phuryn/competitor-analysis",
+      "phuryn/competitive-battlecard",
+      "deanpeters/company-research",
+      "brave/web-search"
+    ],
+    "handoffs": [
+      "product-owner",
+      "ux-researcher",
+      "data-analyst"
+    ]
+  },
+  {
+    "name": "technical-writer",
+    "department": "product",
+    "title": "Technical Writer & Documentation Engineer",
+    "description": "Use to write and maintain docs: API references, guides, READMEs, changelogs, and onboarding \u2014 accurate, tested, and reader-focused.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Skill",
+    "skills": [
+      "anthropics/doc-coauthoring",
+      "anthropics/docx",
+      "makenotion/research-documentation",
+      "phuryn/release-notes",
+      "brave/web-search"
+    ],
+    "handoffs": [
+      "api-architect",
+      "product-owner",
+      "tech-lead"
+    ]
+  },
+  {
+    "name": "seo-specialist",
+    "department": "product",
+    "title": "SEO & Organic Growth Specialist",
+    "description": "Use to plan and audit organic search: technical SEO, on-page and content strategy, structured data/schema, site architecture, Core Web Vitals, and programmatic/AI-search (AEO) optimization.",
+    "model": "sonnet",
+    "tools": "Read, Grep, Glob, WebFetch, WebSearch, Skill",
+    "skills": [
+      "addyosmani/seo",
+      "coreyhaines31/seo-audit",
+      "coreyhaines31/schema-markup",
+      "coreyhaines31/site-architecture",
+      "coreyhaines31/programmatic-seo",
+      "sanity-io/seo-aeo-best-practices",
+      "addyosmani/core-web-vitals"
+    ],
+    "handoffs": [
+      "nextjs-dev",
+      "technical-writer",
+      "performance-engineer",
+      "market-researcher"
+    ]
+  },
+  {
+    "name": "company-orchestrator",
+    "department": "meta",
+    "title": "Company Orchestrator",
+    "description": "Use as the top-level entry point for a large initiative: it routes work to the right department lead (tech-lead, product-owner, cloud-architect, etc.), sequences cross-department work, and tracks the initiative end-to-end.",
+    "model": "opus",
+    "tools": "Read, Write, Edit, Glob, Grep, Skill",
+    "skills": [
+      "gsd",
+      "find-subagents",
+      "select-skills",
+      "muratcankoylan/multi-agent-patterns",
+      "anthropics/doc-coauthoring"
+    ],
+    "handoffs": [
+      "product-owner",
+      "tech-lead",
+      "cloud-architect",
+      "qa-engineer",
+      "context-manager"
+    ]
+  },
+  {
+    "name": "context-manager",
+    "department": "meta",
+    "title": "Context Manager",
+    "description": "Use to capture, organize, and hand off shared project context (decisions, glossary, current state) between agents and across long-running work.",
+    "model": "sonnet",
+    "tools": "Read, Write, Edit, Glob, Grep, Skill",
+    "skills": [
+      "muratcankoylan/context-fundamentals",
+      "muratcankoylan/context-compression",
+      "makenotion/knowledge-capture",
+      "anthropics/doc-coauthoring"
+    ],
+    "handoffs": [
+      "company-orchestrator",
+      "tech-lead",
+      "product-owner"
+    ]
+  },
+  {
+    "name": "dynamic-agent",
+    "department": "meta",
+    "title": "Dynamic Delegated-Task Agent",
+    "description": "Use for a delegated task that doesn't map cleanly to one fixed specialist, or when you want a single agent to receive a task, discover the right role, dynamically load the matching skills, and execute end-to-end. It has no fixed specialism \u2014 it adopts one per task.",
+    "model": "opus",
+    "tools": "Read, Write, Edit, Bash, Glob, Grep, WebFetch, WebSearch, Skill",
+    "skills": [
+      "find-subagents",
+      "select-skills"
+    ],
+    "handoffs": [
+      "company-orchestrator",
+      "tech-lead",
+      "product-owner"
+    ]
+  }
+]
