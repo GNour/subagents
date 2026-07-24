@@ -61,6 +61,34 @@ def _cmd_lock(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_generate(args: argparse.Namespace) -> int:
+    from catalog import repo
+    from catalog.generate import asset_targets
+    from catalog.io import write_text_atomic
+
+    root = repo.REPO_ROOT
+    targets = asset_targets(root)
+    if args.check:
+        drift = [
+            path
+            for path, text in targets.items()
+            if (path.read_text(encoding="utf-8") if path.exists() else "") != text
+        ]
+        if drift:
+            names = ", ".join(str(p.relative_to(root)) for p in drift)
+            print(
+                f"dist assets out of date ({names}); run: subagents-catalog generate",
+                file=sys.stderr,
+            )
+            return 1
+        print("dist assets are up to date")
+        return 0
+    for path, text in targets.items():
+        write_text_atomic(path, text)
+    print("wrote dist/catalog.json and dist/provenance.json")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="subagents-catalog",
@@ -85,6 +113,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="fail if the committed lock is out of date instead of writing",
     )
     lock.set_defaults(func=_cmd_lock)
+
+    generate = sub.add_parser(
+        "generate", help="write dist/catalog.json and dist/provenance.json (offline)"
+    )
+    generate.add_argument(
+        "--check",
+        action="store_true",
+        help="fail if committed dist assets are out of date instead of writing",
+    )
+    generate.set_defaults(func=_cmd_generate)
 
     return parser
 
