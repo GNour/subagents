@@ -89,6 +89,33 @@ def _cmd_generate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_validate(args: argparse.Namespace) -> int:
+    import json
+
+    from catalog import CATALOG_SCHEMA_VERSION, repo
+    from catalog.provenance import ProvenanceError, load_lock
+    from catalog.validate import CatalogValidationError, validate_catalog
+
+    root = repo.REPO_ROOT
+    catalog_path = root / "dist" / "catalog.json"
+    lock_path = root / "config" / "skills.lock.json"
+    try:
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+        validate_catalog(catalog, expected_schema_version=CATALOG_SCHEMA_VERSION)
+        load_lock(lock_path)
+    except FileNotFoundError as error:
+        print(f"missing asset: {error.filename}", file=sys.stderr)
+        return 1
+    except (CatalogValidationError, ProvenanceError) as error:
+        print(f"invalid catalog: {error}", file=sys.stderr)
+        return 1
+    print(
+        f"catalog valid: {len(catalog['roles'])} roles, "
+        f"{len(catalog['departments'])} departments"
+    )
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="subagents-catalog",
@@ -123,6 +150,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="fail if committed dist assets are out of date instead of writing",
     )
     generate.set_defaults(func=_cmd_generate)
+
+    validate = sub.add_parser(
+        "validate", help="validate the committed catalog and skills lock"
+    )
+    validate.set_defaults(func=_cmd_validate)
 
     return parser
 

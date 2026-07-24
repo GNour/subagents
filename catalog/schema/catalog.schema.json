@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/GNour/subagents/catalog/schema/catalog.schema.json",
+  "title": "Subagents catalog",
+  "description": "Advisory role catalog consumed by the Aegis control plane. Model, tool, skill, and handoff fields are advisory and confer no runtime authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "package_version",
+    "catalog_schema_version",
+    "source_commit",
+    "departments",
+    "roles"
+  ],
+  "properties": {
+    "package_version": { "type": "string", "minLength": 1 },
+    "catalog_schema_version": { "type": "string", "pattern": "^[0-9]+$" },
+    "source_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "departments": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/department" }
+    },
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/role" }
+    }
+  },
+  "definitions": {
+    "department": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "role": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "department_id",
+        "name",
+        "title",
+        "description",
+        "expertise",
+        "invocation",
+        "standards",
+        "model_hint",
+        "advisory_tools",
+        "skills",
+        "handoffs"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "department_id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "expertise": { "type": "array", "items": { "type": "string" } },
+        "invocation": { "type": "string", "minLength": 1 },
+        "standards": { "type": "array", "items": { "type": "string" } },
+        "model_hint": { "type": "string", "minLength": 1 },
+        "advisory_tools": { "type": "array", "items": { "type": "string" } },
+        "skills": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/skill" }
+        },
+        "handoffs": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/handoff" }
+        }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source", "version", "sha256", "license"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]*$" },
+        "source": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "license": { "type": "string", "minLength": 1, "maxLength": 128 }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role_id", "reason", "required"],
+      "properties": {
+        "role_id": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "required": { "type": "boolean" }
+      }
+    }
+  }
+}
