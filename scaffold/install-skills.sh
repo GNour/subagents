@@ -30,9 +30,25 @@ if ! command -v npx >/dev/null 2>&1; then
   exit 1
 fi
 
+cat >&2 <<'NOTE'
+warning: `npx skills add` resolves each skill at its current upstream HEAD, not a
+pinned revision. The pinned supply-chain record lives in config/skills.lock.json
+(regenerate with `bin/subagents-catalog lock`). This convenience installer is
+separate from that catalog and is optional.
+NOTE
+
+failures=()
 for s in "${SKILLS[@]}"; do
   echo "==> npx skills add $s"
-  npx skills add "$s" || echo "  ! failed: $s (continuing)"
+  if ! npx skills add "$s"; then
+    failures+=("$s")
+  fi
 done
+
+if (( ${#failures[@]} > 0 )); then
+  echo "error: ${#failures[@]} skill install(s) failed; catalog install is incomplete:" >&2
+  printf '  ! %s\n' "${failures[@]}" >&2
+  exit 1
+fi
 
 echo "Done. Skills installed globally; run your harness to verify."
