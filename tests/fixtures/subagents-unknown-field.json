@@ -1,0 +1,120 @@
+{
+  "package_version": "1.0.0-aegis.0",
+  "catalog_schema_version": "1",
+  "source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "departments": [
+    {
+      "id": "engineering",
+      "name": "Engineering"
+    },
+    {
+      "id": "quality",
+      "name": "Quality & Testing"
+    }
+  ],
+  "roles": [
+    {
+      "id": "alpha",
+      "department_id": "engineering",
+      "name": "alpha",
+      "title": "Alpha Lead",
+      "description": "Leads alpha work.",
+      "expertise": [
+        "system design",
+        "delivery"
+      ],
+      "invocation": "1. clarify the goal\n2. decompose the work",
+      "standards": [
+        "every task has an owner"
+      ],
+      "model_hint": "opus",
+      "advisory_tools": [
+        "Read",
+        "Write",
+        "Skill"
+      ],
+      "skills": [
+        {
+          "id": "owner/skill-a",
+          "source": "skills.sh:owner/skill-a",
+          "version": "advisory-000000000001",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "license": "advisory-unverified"
+        }
+      ],
+      "handoffs": [
+        {
+          "role_id": "beta",
+          "reason": "hand testing to beta",
+          "required": false
+        }
+      ],
+      "surprise": "not allowed"
+    },
+    {
+      "id": "beta",
+      "department_id": "quality",
+      "name": "beta",
+      "title": "Beta QA",
+      "description": "Verifies beta work.",
+      "expertise": [
+        "testing"
+      ],
+      "invocation": "1. write the plan",
+      "standards": [
+        "tests are deterministic"
+      ],
+      "model_hint": "sonnet",
+      "advisory_tools": [
+        "Read",
+        "Grep"
+      ],
+      "skills": [
+        {
+          "id": "local-skill",
+          "source": "local:GNour/subagents",
+          "version": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+          "license": "MIT"
+        }
+      ],
+      "handoffs": [
+        {
+          "role_id": "gamma",
+          "reason": "escalate to gamma",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "gamma",
+      "department_id": "quality",
+      "name": "gamma",
+      "title": "Gamma Reviewer",
+      "description": "Reviews gamma work.",
+      "expertise": [
+        "review"
+      ],
+      "invocation": "1. read the diff",
+      "standards": [
+        "findings ranked by severity"
+      ],
+      "model_hint": "sonnet",
+      "advisory_tools": [
+        "Read",
+        "Grep",
+        "Glob"
+      ],
+      "skills": [
+        {
+          "id": "owner/skill-a",
+          "source": "skills.sh:owner/skill-a",
+          "version": "advisory-000000000001",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "license": "advisory-unverified"
+        }
+      ],
+      "handoffs": []
+    }
+  ]
+}

@@ -10,13 +10,16 @@ For each target harness the agent is written in that harness's native shape:
   Codex        ~/.codex/agents/<name>.toml             TOML (best-effort conversion)
   pi           ~/.pi/agent/prompts/<name>.md           markdown prompt template
 
-Project mode (--project) writes to the equivalent in-repo dirs where the harness
-supports it (.claude/agents, .opencode/agent, .pi/prompts). Codex agents are
-global-only, so --project falls back to the global Codex dir with a note.
+Supply-chain behavior (see docs/plans/01-aegis-catalog-package.md, Task 6):
 
-Format conversions for opencode/Codex/pi are best-effort: the exact frontmatter/
-schema each harness accepts evolves, and models are left to each harness's default
-rather than hard-coding possibly-stale model ids. The Claude Code install is exact.
+  * Default (no flags) targets only harnesses actually detected on this machine;
+    pass an explicit flag to force an undetected harness, or --all to force every one.
+  * Writes are atomic with backup + rollback: an existing agent/skill is preserved
+    and restored if the replacement fails, never blindly deleted.
+  * Cross-harness conversion is lossy; every dropped frontmatter field is reported.
+
+This installer is intentionally separate from the catalog data package (catalog/,
+bin/subagents-catalog): Aegis consumes the catalog without running any install code.
 """
 import argparse
 import os
@@ -28,6 +31,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AGENTS_DIR = os.path.join(ROOT, "agents")
 SKILLS_DIR = os.path.join(ROOT, "skills")
 HOME = os.path.expanduser("~")
+
+ORDER = ("claude", "opencode", "codex", "pi")
+FRONTMATTER_FIELDS = ("name", "description", "tools", "model", "department", "skills")
 
 
 def parse_agent(path):
@@ -79,7 +85,57 @@ def collect_local_skills():
     ]
 
 
-# ── format converters ─────────────────────────────────────────────────────
+# ── atomic filesystem operations (backup + rollback) ───────────────────────
+def atomic_write(dest, content):
+    """Write a file atomically, restoring any prior version if the write fails."""
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    tmp = dest + ".tmp"
+    backup = dest + ".bak" if os.path.exists(dest) else None
+    if backup:
+        shutil.copy2(dest, backup)
+    try:
+        with open(tmp, "w") as f:
+            f.write(content)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, dest)
+    except BaseException:
+        if os.path.exists(tmp):
+            os.remove(tmp)
+        if backup and os.path.exists(backup):
+            os.replace(backup, dest)  # rollback
+        raise
+    else:
+        if backup and os.path.exists(backup):
+            os.remove(backup)
+
+
+def atomic_replace_tree(src, dest):
+    """Replace a directory atomically via staging + backup, rolling back on failure."""
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    staging = dest + ".staging"
+    backup = dest + ".bak"
+    for stale in (staging, backup):
+        if os.path.exists(stale):
+            shutil.rmtree(stale)
+    shutil.copytree(src, staging)
+    had_existing = os.path.exists(dest)
+    if had_existing:
+        os.replace(dest, backup)
+    try:
+        os.replace(staging, dest)
+    except BaseException:
+        if had_existing and os.path.exists(backup):
+            os.replace(backup, dest)  # rollback
+        if os.path.exists(staging):
+            shutil.rmtree(staging)
+        raise
+    else:
+        if had_existing and os.path.exists(backup):
+            shutil.rmtree(backup)
+
+
+# ── format converters ──────────────────────────────────────────────────────
 def to_claude(fm, body, raw):
     return raw  # verbatim — this is the native format
 
@@ -120,7 +176,12 @@ def to_pi_prompt(fm, body, raw):
     return "\n".join(header) + body
 
 
-# ── target definitions ────────────────────────────────────────────────────
+def dropped_fields(spec):
+    """Frontmatter fields not carried into a harness's native format."""
+    return [f for f in FRONTMATTER_FIELDS if f not in spec["preserves"]]
+
+
+# ── target definitions & detection ─────────────────────────────────────────
 def target_specs(project):
     return {
         "claude": {
@@ -131,6 +192,8 @@ def target_specs(project):
             "ext": ".md",
             "convert": to_claude,
             "project_ok": True,
+            "preserves": {"name", "description", "tools", "model", "department", "skills"},
+            "detect": [os.path.join(HOME, ".claude")],
         },
         "opencode": {
             "label": "opencode",
@@ -140,6 +203,8 @@ def target_specs(project):
             "ext": ".md",
             "convert": to_opencode,
             "project_ok": True,
+            "preserves": {"name", "description"},
+            "detect": [os.path.join(HOME, ".config", "opencode"), shutil.which("opencode")],
         },
         "codex": {
             "label": "Codex",
@@ -149,6 +214,8 @@ def target_specs(project):
             "ext": ".toml",
             "convert": to_codex_toml,
             "project_ok": False,
+            "preserves": {"name", "description"},
+            "detect": [os.path.join(HOME, ".codex"), shutil.which("codex")],
         },
         "pi": {
             "label": "pi",
@@ -158,31 +225,48 @@ def target_specs(project):
             "ext": ".md",
             "convert": to_pi_prompt,
             "project_ok": True,
+            "preserves": {"name", "description"},
+            "detect": [os.path.join(HOME, ".pi"), shutil.which("pi")],
         },
     }
+
+
+def is_detected(spec):
+    return any(marker and os.path.exists(marker) for marker in spec["detect"])
+
+
+def resolve_selection(flags, all_flag, detected):
+    """Pure target selection. Returns (targets, skipped_undetected)."""
+    explicit = [k for k in ORDER if flags.get(k)]
+    if all_flag:
+        return list(ORDER), []
+    if explicit:
+        return explicit, []
+    targets = [k for k in ORDER if k in detected]
+    skipped = [k for k in ORDER if k not in detected]
+    return targets, skipped
 
 
 def install_target(key, spec, agents, dry_run, project):
     if project and not spec["project_ok"]:
         print(f"  ! {spec['label']}: agents are global-only — using {spec['base']}")
-    print(f"\n== {spec['label']} → {spec['base']}")
+    lost = dropped_fields(spec)
+    if lost:
+        print(f"\n== {spec['label']} → {spec['base']}  (conversion drops: {', '.join(lost)})")
+    else:
+        print(f"\n== {spec['label']} → {spec['base']}  (verbatim, no field loss)")
     n = 0
     for dept, path in agents:
         fm, body, raw = parse_agent(path)
         name = fm.get("name") or os.path.splitext(os.path.basename(path))[0]
-        if spec["nested"]:
-            dest_dir = os.path.join(spec["base"], dept)
-        else:
-            dest_dir = spec["base"]
+        dest_dir = os.path.join(spec["base"], dept) if spec["nested"] else spec["base"]
         dest = os.path.join(dest_dir, name + spec["ext"])
         content = spec["convert"](fm, body, raw)
         rel = os.path.relpath(dest, HOME)
         if dry_run:
             print(f"  would write ~/{rel}")
         else:
-            os.makedirs(dest_dir, exist_ok=True)
-            with open(dest, "w") as f:
-                f.write(content)
+            atomic_write(dest, content)
             print(f"  ✓ {name}{spec['ext']}")
         n += 1
     print(f"  {'would install' if dry_run else 'installed'} {n} agents")
@@ -190,7 +274,7 @@ def install_target(key, spec, agents, dry_run, project):
 
 
 def install_local_skills(spec, skills, dry_run):
-    """Copy repo-authored skills/<slug>/ into a harness's skills dir."""
+    """Copy repo-authored skills/<slug>/ into a harness's skills dir (atomically)."""
     if not skills:
         return 0
     base = spec["skill_base"]
@@ -200,9 +284,7 @@ def install_local_skills(spec, skills, dry_run):
         if dry_run:
             print(f"  would copy skill → ~/{rel}/")
         else:
-            if os.path.exists(dest):
-                shutil.rmtree(dest)
-            shutil.copytree(src, dest)
+            atomic_replace_tree(src, dest)
             print(f"  ✓ skill {slug}/")
     print(f"  {'would install' if dry_run else 'installed'} {len(skills)} local skill(s)")
     return len(skills)
@@ -214,15 +296,11 @@ def main():
     ap.add_argument("--opencode", action="store_true")
     ap.add_argument("--codex", action="store_true")
     ap.add_argument("--pi", action="store_true")
-    ap.add_argument("--all", action="store_true", help="all four harnesses (default if none specified)")
+    ap.add_argument("--all", action="store_true", help="force all four harnesses, detected or not")
     ap.add_argument("--project", action="store_true", help="install into this repo instead of the home dir")
     ap.add_argument("--dry-run", action="store_true", help="print what would be written, write nothing")
     ap.add_argument("--no-skills", action="store_true", help="skip installing repo-authored local skills")
     args = ap.parse_args()
-
-    selected = [k for k in ("claude", "opencode", "codex", "pi") if getattr(args, k)]
-    if args.all or not selected:
-        selected = ["claude", "opencode", "codex", "pi"]
 
     agents = collect_agents()
     if not agents:
@@ -231,6 +309,25 @@ def main():
     skills = [] if args.no_skills else collect_local_skills()
 
     specs = target_specs(args.project)
+    detected = {k for k, spec in specs.items() if is_detected(spec)}
+    flags = {k: getattr(args, k) for k in ORDER}
+    selected, skipped = resolve_selection(flags, args.all, detected)
+
+    explicit_forced = [k for k in selected if k not in detected and not args.all]
+    for k in explicit_forced:
+        print(f"note: {specs[k]['label']} not detected on this machine — installing anyway (explicit flag).")
+
+    if not selected:
+        print(
+            "No supported harness detected (.claude, opencode, .codex, .pi).\n"
+            "Pass an explicit flag (e.g. --claude) or --all to force installation.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    if skipped and not (args.all or any(flags.values())):
+        print(f"Skipping undetected harness(es): {', '.join(specs[k]['label'] for k in skipped)}")
+
     print(f"Fleet: {len(agents)} agents + {len(skills)} local skill(s) → "
           f"{', '.join(specs[k]['label'] for k in selected)}"
           + ("  (dry run)" if args.dry_run else "") + ("  [project]" if args.project else "  [global]"))
