@@ -1,13 +1,14 @@
 """Command dispatch for the ``subagents-catalog`` entry-gate CLI.
 
-Only ``version`` is wired up in Task 1. ``validate``, ``generate``, and ``lock`` are
-added in later tasks. No subcommand reads the network except ``lock``.
+Subcommands: ``version``, ``lock``. ``generate`` and ``validate`` are added in later
+tasks. Only a future ``lock --upgrade`` would touch the network; nothing here does.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections.abc import Sequence
 
 from catalog import CATALOG_SCHEMA_VERSION, PACKAGE_VERSION
@@ -28,6 +29,38 @@ def _cmd_version(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_lock(args: argparse.Namespace) -> int:
+    from catalog import repo
+    from catalog.io import canonical_json, write_json_atomic
+    from catalog.lock import build_lock
+
+    root = repo.REPO_ROOT
+    meta = repo.load_meta(root)
+    slugs = repo.local_slugs(root)
+    lock = build_lock(
+        repo.load_roster(root),
+        source_commit=str(meta["source_commit"]),
+        local_slugs=slugs,
+        local_content=repo.local_content(root, slugs),
+        license_=str(meta.get("license", "MIT")),
+    )
+    path = root / "config" / "skills.lock.json"
+    rendered = canonical_json(lock)
+    if args.check:
+        current = path.read_text(encoding="utf-8") if path.exists() else ""
+        if current != rendered:
+            print(
+                "config/skills.lock.json is out of date; run: subagents-catalog lock",
+                file=sys.stderr,
+            )
+            return 1
+        print("config/skills.lock.json is up to date")
+        return 0
+    write_json_atomic(path, lock)
+    print(f"wrote {path.relative_to(root)} ({len(lock['skills'])} skills)")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="subagents-catalog",
@@ -42,6 +75,16 @@ def build_parser() -> argparse.ArgumentParser:
         "--json", action="store_true", help="emit a strict JSON version block"
     )
     version.set_defaults(func=_cmd_version)
+
+    lock = sub.add_parser(
+        "lock", help="build config/skills.lock.json from the roster (offline)"
+    )
+    lock.add_argument(
+        "--check",
+        action="store_true",
+        help="fail if the committed lock is out of date instead of writing",
+    )
+    lock.set_defaults(func=_cmd_lock)
 
     return parser
 

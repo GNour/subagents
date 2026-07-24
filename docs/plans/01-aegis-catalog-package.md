@@ -59,25 +59,29 @@ catalog. `catalog/build.py` is a pure function `roster → catalog dict`.
 
 ### D3 — Skill provenance (`config/skills.lock.json`)
 Every skill referenced by the roster gets an immutable lock entry:
-`{id, source, kind, version, sha256, license}` — `version` is a commit SHA or fixed
-semver, **never `latest`**. `sha256` is a lowercase 64-hex digest. Resolution by kind:
+`{id, source, kind, version, sha256, license}` — `version` is never a mutable ref
+(`latest`, `main`, …); `sha256` is a lowercase 64-hex digest.
+
+**Provenance measurement (2026-07-24):** only **5 of 122** registry ids resolve as real
+`github.com/owner/repo` repos. The other **117** are advisory `owner/skill-name`
+references whose skills live inside *other* repos (skills.sh's true ref is
+`owner/repo@skill`). True upstream content pins for those would require reconciling every
+id to its canonical ref. Decision: use **declared advisory provenance** now (unblocks the
+Aegis gate), with a future networked `lock --upgrade` able to promote any id to a real
+pin. Resolution by kind (all **offline & deterministic**):
 
 - **local** (`find-subagents`, `select-skills`, `tailwind`): `source=local:GNour/subagents`,
-  `version=` repo release commit, `sha256=` SHA-256 of the skill's `SKILL.md` bytes,
-  `license=` repo `LICENSE`. **Fully offline / content-addressed.**
-- **framework** (`gsd`): `source=` upstream repo URL, `version=` pinned commit,
-  `sha256=` digest of the pinned tarball, `license=` upstream SPDX. **Networked pin.**
-- **registry** (122 × `owner/repo`, skills.sh): `source=` resolved GitHub repo,
-  `version=` pinned commit, `sha256=` digest of the pinned tarball, `license=` upstream
-  SPDX. **Networked pin (batch).**
-- **bundled** (`dataviz`, `drawio`, `jira-ticket-planner`): harness-provided, no repo
-  content. `source=bundled:claude-code`, `version=` fixed harness version,
-  `sha256=` digest over the canonical provenance descriptor, and the entry is flagged
-  `kind=bundled` so downstream can treat it as a *declaration*, not a content hash.
+  `version=` release `source_commit`, `sha256=` SHA-256 of the skill's `SKILL.md` bytes,
+  `license=MIT`. **Content-addressed / verified.**
+- **registry / framework / bundled** (declared advisory): `source=skills.sh:<id>` /
+  `framework:<url>` / `bundled:claude-code`; `sha256=` digest over the canonical
+  `{id,kind,source}` descriptor; `version=advisory-<sha256[:12]>`;
+  `license=advisory-unverified`. The `kind` field marks these as *declarations*, not
+  verified upstream content pins.
 
-`config/skills.lock.json` is committed. `generate` is pure and only reads the lock; the
-networked `lock` command is the *only* code path that touches the network, and it is
-never invoked by `validate`, `generate`, or `version`.
+`config/skills.lock.json` and `config/catalog.meta.json` (holding `source_commit`) are
+committed. `generate` and `validate` are pure and only read committed files — they never
+touch the network. The optional `lock --upgrade` command is the *only* networked path.
 
 ### D4 — Handoffs
 Roster handoffs are role-name lists with no reason/required flag. Emit each as
